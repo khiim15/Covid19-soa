@@ -4,6 +4,12 @@ const db = require('../db/database');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
+  
+  res.render('index', { countrys: objectCountry });
+});
+
+
+router.get('/home', async function(req, res, next) {
   const result = await db.getAllCountry();
   const confirmed = await db.getAllConfirmed();
   const recovered = await db.getAllRecovered();
@@ -19,11 +25,15 @@ router.get('/', async function(req, res, next) {
       death: death.rows[key].confirmed,
     }
   }
-  res.render('index', { countrys: objectCountry });
+  res.render('home', { countrys: objectCountry });
 });
 
-router.get('/map', async function(req,res,next) {
-  res.render('map');
+
+
+
+
+router.get('/chart', async function(req,res,next) {
+  res.render('chart');
 
 });
 
