@@ -63,11 +63,16 @@ router.get('/chart', async function(req,res,next) {
     }
   }
 
-
-
-
   res.render('chart');
 
 });
+
+router.get('/map', async function(req,res,next) {
+  const getLatlong = await db.getLatLong();
+  res.render('map', { maps:getLatlong.rows });
+
+});
+
+
 
 module.exports = router;
