@@ -18,17 +18,11 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home </a>
+              <a class="nav-link" href="/">Home </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="country.html">Table</a>
+                <a class="nav-link" href="/table">Table</a>
               </li>
-            <li class="nav-item">
-              <a class="nav-link" href="survey.html">Survey</a>
-            </li>
            </ul> 
           </div>
       </nav>
@@ -58,7 +52,7 @@
         ];
         
         $('#country').html('<option disabled selected>-- Select country or region --</option>');
-        axios.get('https://api.covid19api.com/countries').then(function(res) {
+        axios.get('db/database.js').then(function(res) {
             res.data.forEach(function(row) {
                 $('#country').append('<option value="'+row.Slug+'">'+row.Country+'</option>');
             });

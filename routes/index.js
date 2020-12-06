@@ -23,7 +23,7 @@ router.get('/', async function(req, res, next) {
 });
 
 
-router.get('/home', async function(req, res, next) {
+router.get('/table', async function(req, res, next) {
   const result = await db.getAllCountry();
   const confirmed = await db.getAllConfirmed();
   const recovered = await db.getAllRecovered();
@@ -39,7 +39,7 @@ router.get('/home', async function(req, res, next) {
       death: death.rows[key].confirmed,
     }
   }
-  res.render('home', { countrys: objectCountry });
+  res.render('table', { countrys: objectCountry });
 });
 
 

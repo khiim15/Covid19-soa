@@ -51,6 +51,39 @@ const getAllDeath = async() => {
     }
 }
 
+const getTotalConfirmed = async() => {
+    const sql= `SELECT "3/23/20" as Confirmed from covid19_death_csv`
+    try {
+        const data = await pool.query(sql);
+        return data;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+}
+
+const getTotalRecovered = async() => {
+    const sql= `SELECT "3/23/20" as Confirmed from covid19_recovered_csv`
+    try {
+        const data = await pool.query(sql);
+        return data;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+}
+
+const getTotalDeath = async() => {
+    const sql= `SELECT "3/23/20" as Confirmed from covid19_death_csv`
+    try {
+        const data = await pool.query(sql);
+        return data;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+}
+
 const getLatLong = async() => {
     const sql= `SELECT "Province/State" as State , "Country/Region" as Country, lat , long from covid19_death_csv`
     try {
@@ -67,5 +100,8 @@ module.exports = {
     getAllConfirmed,
     getAllRecovered,
     getAllDeath,
+    getTotalConfirmed,
+    getTotalRecovered,
+    getTotalDeath,
     getLatLong
 }
