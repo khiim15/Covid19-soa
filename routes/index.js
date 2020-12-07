@@ -69,9 +69,36 @@ router.get('/chart', async function(req,res,next) {
 
 router.get('/map', async function(req,res,next) {
   const getLatlong = await db.getLatLong();
+  
+
   res.render('map', { maps:getLatlong.rows });
 
 });
+
+router.get('/total', async function(req, res, next) {
+  
+  const TotalConfirmed = await db.getTotalConfirmed();
+  const TotalRecovered = await db.getTotalRecovered();
+  const TotalDeaths = await db.getTotalDeaths();
+
+  const lastWeekConfirmed = await db.getLastWeekConfirmed();
+  const lastWeekRecovered = await db.getLastWeekRecovered();
+  const lastWeekDeaths = await db.getLastWeekDeaths();
+
+  const data = {
+    TotalConfirmed: TotalConfirmed.rows[0].confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+    TotalRecovered: TotalRecovered.rows[0].recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+    TotalDeaths: TotalDeaths.rows[0].deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+  }
+
+  res.render('total', {
+    data: data,
+    lastWeekConfirmed: lastWeekConfirmed.rows[0],
+    lastWeekRecovered: lastWeekRecovered.rows[0],
+    lastWeekDeaths: lastWeekDeaths.rows[0],
+  });
+});
+
 
 
 

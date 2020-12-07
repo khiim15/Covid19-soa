@@ -1,63 +1,69 @@
-
-<!doctype html>
-<html lang="en">
-  <head>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
     <title>COVID-19</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
+    <link rel="icon" href="images/virus.png">
+    <link href="https://unpkg.com/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+   <!-- Make sure you put this AFTER Leaflet's CSS -->
+     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+   
+</head>
   <body>
-      <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
-          <a class="navbar-brand" href="/">COVID-19</a>
-          <link rel="icon" href="images/virus.png">
-          <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-              aria-expanded="false" aria-label="Toggle navigation"></button>
-          <div class="collapse navbar-collapse" id="collapsibleNavId">
-              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                  <li class="nav-item active">
-                      <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item active">
-                      <a class="nav-link" href="/chart">chart<span class="sr-only">(current)</span></a>
-                  </li>
-              </ul>
-              <form class="form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-          </div>
-      </nav>
-      <div class=" container ">
+    <nav class="navbar navbar-expand-sm navbar-back" style="background-color: rgb(212, 223, 255);">
+        <a class="navbar-brand" href="/">COVID-19</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/total">Total<Table></Table><span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+      <div class="container-fluid" style="margin-top: 10px; text-align: center;">
+        <div id="toolbar">
+            <h2>COVID-19 Update <span>(Live)</span></h2>
+        </div>
+      </div>
+      <div class="container">
         <table class="table ">
             <thead>
                 <tr>
-                    <th>State</th>
-                    <th>Country</th>
-                    <th>Confirmed</th>
-                    <th>Recovered</th>
-                    <th>Deaths</th>
+                    <th style="background-color: #968c83; text-align: center; color: white;">State</th>
+                    <th style="background-color:#0e918c; text-align: center; color: white;">Country</th>
+                    <th style="background-color:#f6830f; text-align: center; color: white;">Confirmed</th>
+                    <th style="background-color:#bb2205; text-align: center; color: white;">Recovered</th>
+                    <th style="background-color:#ee6f57; text-align: center; color: white;">Deaths</th>
                 </tr>
             </thead>
             <tbody>
                 <% countrys.forEach(function(data){ %>
                     <tr>
-                        <td>
+                        <td style="background-color: #968c83; text-align: center; color: white;">
                             <%= data.state %>
                         </td>
-                        <td>
+                        <td style="background-color:#0e918c; text-align: center; color: white;">
                             <%= data.country %>
                         </td>
-                        <td>
+                        <td style="background-color:#f6830f; text-align: center; color: white;">
                             <%= data.confirmed %>
                         </td>
-                        <td>
+                        <td style="background-color:#bb2205; text-align: center; color: white;">
                             <%= data.recovered %>
                         </td>
-                        <td>
+                        <td style="background-color:#ee6f57; text-align: center; color: white;">
                             <%= data.death %>
                         </td>
                     </tr>

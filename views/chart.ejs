@@ -52,7 +52,7 @@
         ];
         
         $('#country').html('<option disabled selected>-- Select country or region --</option>');
-        axios.get('db/database.js').then(function(res) {
+        axios.get('/database.js').then(function(res) {
             res.data.forEach(function(row) {
                 $('#country').append('<option value="'+row.Slug+'">'+row.Country+'</option>');
             });
@@ -151,4 +151,3 @@
     </script>
 </body>
 </html>
-© 2020 GitHub, Inc.

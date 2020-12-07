@@ -10,6 +10,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 
 
+
 for (const key in parseData){
     if(parseData[key].value == null){
         L.circle([parseData[key].lat, parseData[key].long], {
