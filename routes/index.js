@@ -45,33 +45,13 @@ router.get('/table', async function(req, res, next) {
 
 
 
-
-// router.get('/chart', async function(req,res,next) {
-//   const result = await db.getAllCountry();
-//   const confirmed = await db.getAllConfirmed();
-//   const recovered = await db.getAllRecovered();
-//   const death = await db.getAllDeath();
-
-//   let objectCountry = [];
-//   for (const key in result.rows) {
-//     objectCountry[key] = {
-//       state: result.rows[key].state,
-//       country: result.rows[key].country,
-//       confirmed: confirmed.rows[key].confirmed,
-//       recovered: recovered.rows[key].confirmed,
-//       death: death.rows[key].confirmed,
-//     }
-//   }
-
-//   res.render('chart');
-
-// });
-
 router.get('/map', async function(req,res,next) {
   const getLatlong = await db.getLatLong();
   const getConfirmed = await db.getAllConfirmed();
+  const getRecovered = await db.getAllRecovered2();
+  const getDeath = await db.getAllDeath2();
   
-  res.render('map', { maps: getLatlong.rows, confirmed: getConfirmed.rows });
+  res.render('map', { maps: getLatlong.rows, confirmed: getConfirmed.rows , recovered: getRecovered.rows, death: getDeath.rows });
 
 });
 

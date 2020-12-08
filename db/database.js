@@ -40,6 +40,16 @@ const getAllRecovered = async() => {
     }
 }
 
+const getAllRecovered2 = async() => {
+    const sql= `SELECT "3/23/20" as recovered from covid19_recovered_csv`
+    try {
+        const data = await pool.query(sql);
+        return data;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+}
 const getAllDeath = async() => {
     const sql= `SELECT "3/23/20" as Confirmed from covid19_death_csv`
     try {
@@ -50,14 +60,23 @@ const getAllDeath = async() => {
         return null;
     }
 }
+const getAllDeath2 = async() => {
+    const sql= `SELECT "3/23/20" as death from covid19_death_csv`
+    try {
+        const data = await pool.query(sql);
+        return data;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+}
 
 async function getChart(){
-    const sql = `select sum(covid19_confirmed_csv."3/23/20") as date_conf,sum(covid19_death_csv."3/23/20") as date_death,sum(covid19_recovered_csv."3/23/20") as date_recover
+    const sql = `SELECT sum(covid19_confirmed_csv."3/23/20") as date_confirmed,sum(covid19_death_csv."3/23/20") as date_deaths,sum(covid19_recovered_csv."3/23/20") as date_recovered
     from covid19_confirmed_csv , covid19_death_csv , covid19_recovered_csv
     where covid19_confirmed_csv."Country/Region"= covid19_death_csv."Country/Region" and covid19_confirmed_csv."Province/State" = covid19_death_csv."Province/State" 
     and covid19_confirmed_csv."Country/Region"= covid19_recovered_csv."Country/Region" and covid19_confirmed_csv."Province/State" = covid19_recovered_csv."Province/State" `
     const data = await pool.query(sql);
-    //console.log(data);
     return data;
 
 }
@@ -106,14 +125,7 @@ const getTotalDeaths = async () => {
 }
 
 const getLastWeekConfirmed = async () => {
-    const sql = `select
-    sum("3/16/20") as Day1,
-    sum("3/17/20") as Day2,
-    sum("3/18/20") as Day3,
-    sum("3/19/20") as Day4,
-    sum("3/20/20") as Day5,
-    sum("3/21/20") as Day6,
-    sum("3/22/20") as Day7
+    const sql = `SELECT sum("3/16/20") as Day1, sum("3/17/20") as Day2, sum("3/18/20") as Day3, sum("3/19/20") as Day4, sum("3/20/20") as Day5, sum("3/21/20") as Day6, sum("3/22/20") as Day7
     from covid19_confirmed_csv`;
     try {
         const data = await pool.query(sql);
@@ -125,14 +137,7 @@ const getLastWeekConfirmed = async () => {
 }
 
 const getLastWeekRecovered = async () => {
-    const sql = `select
-    sum("3/16/20") as Day1,
-    sum("3/17/20") as Day2,
-    sum("3/18/20") as Day3,
-    sum("3/19/20") as Day4,
-    sum("3/20/20") as Day5,
-    sum("3/21/20") as Day6,
-    sum("3/22/20") as Day7
+    const sql = `SELECT sum("3/16/20") as Day1, sum("3/17/20") as Day2, sum("3/18/20") as Day3, sum("3/19/20") as Day4, sum("3/20/20") as Day5, sum("3/21/20") as Day6, sum("3/22/20") as Day7
     from covid19_recovered_csv`;
     try {
         const data = await pool.query(sql);
@@ -144,14 +149,7 @@ const getLastWeekRecovered = async () => {
 }
 
 const getLastWeekDeaths = async () => {
-    const sql = `select
-    sum("3/16/20") as Day1,
-    sum("3/17/20") as Day2,
-    sum("3/18/20") as Day3,
-    sum("3/19/20") as Day4,
-    sum("3/20/20") as Day5,
-    sum("3/21/20") as Day6,
-    sum("3/22/20") as Day7
+    const sql = `SELECT sum("3/16/20") as Day1, sum("3/17/20") as Day2, sum("3/18/20") as Day3, sum("3/19/20") as Day4, sum("3/20/20") as Day5, sum("3/21/20") as Day6, sum("3/22/20") as Day7
     from covid19_death_csv`;
     try {
         const data = await pool.query(sql);
@@ -169,7 +167,9 @@ module.exports = {
     getAllCountry,
     getAllConfirmed,
     getAllRecovered,
+    getAllRecovered2,
     getAllDeath,
+    getAllDeath2,
     getTotalConfirmed,
     getTotalRecovered,
     getTotalDeaths,

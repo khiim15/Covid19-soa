@@ -53,8 +53,9 @@
             </ul>
         </div>
     </nav>
-    <div class="mt-5">
-        <div id="map" style="height: 500px;">
+    <div class="mt-5" >
+        <div class="title" style="text-align: center;"><h1>COVID-19 World Map</h1></div>
+        <div id="map" style="height: 500px; " >
 
         </div>
     </div>
@@ -87,6 +88,6 @@
  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
    crossorigin=""></script>
-  <script>getMap(`<%- JSON.stringify(maps) %>`, `<%- JSON.stringify(confirmed) %>`)</script>
+  <script>getMap(`<%- JSON.stringify(maps) %>`, `<%- JSON.stringify(confirmed) %>`, `<%- JSON.stringify(recovered) %>`, `<%- JSON.stringify(death) %>`)</script>
 </body>
 </html>
