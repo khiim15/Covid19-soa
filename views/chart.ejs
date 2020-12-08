@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>COVID-19 by Country and Territory</title>
+    <title>COVID-19</title>
+    <link rel="icon" href="images/virus.png">
     <link href="https://unpkg.com/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.css" rel="stylesheet">
@@ -11,143 +12,60 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:rgb(24, 68, 212);">
-        <a class="navbar-brand" href="country.html">COVID-19</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
-          aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
+    <nav class="navbar navbar-expand-sm navbar-back" style="background-color: rgb(212, 223, 255);">
+        <a class="navbar-brand" href="/">COVID-19</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation"></button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Home </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/table">Table</a>
-              </li>
-           </ul> 
-          </div>
-      </nav>
-    <div class="container-fluid my-3">
-        <div class="row">
-            <div class="col-4 mr-auto form-group">
-                <select id="country" class="form-control"></select>
-            </div>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/total">Total<Table></Table><span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/table">Table<Table></Table><span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/map">Map<Table></Table><span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
         </div>
-        <div class="card card-body">
-            <canvas id="myChart" style="width:100%; height:500px;"></canvas>
-        </div>
-    </div>
+    </nav>
+   
+    <canvas id="Chart"></canvas>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <% resultData.forEach(function(data){ %>
+        <script>
+            var ctx = document.getElementById('Chart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'pie',
+    // The data for our dataset
+    data: {
+        labels: ['Confirmed', 'Recover', 'Death'],
+        datasets: [{
+            backgroundColor: ['blue','green','red'],
+            data: [
+            '<%=data.date_conf%>',
+            '<%=data.date_recover%>',  
+            '<%=data.date_death%>',
+            
 
-    <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.min.js"></script>
-    <script src="https://unpkg.com/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://unpkg.com/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/min/moment.min.js"></script> <!-- moment-with-locales.min.js -->
-    <!-- github.com/chartjs/Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script> <!-- Chart.bundle.min.js -->
-    <script>
-        var covidstatus = [
-            {title: 'Death Toll', slug: 'deaths', backgroundColor: '#ffcf9f', borderColor: '#ff9f40'}, 
-            {title: 'Recoveries', slug: 'recovered', backgroundColor: '#a4dfdf', borderColor: '#4bc0c0'},
-            {title: 'Confirmed Infections', slug: 'confirmed', backgroundColor: '#ffb0c1', borderColor: '#ff6384'}
-        ];
-        
-        $('#country').html('<option disabled selected>-- Select country or region --</option>');
-        axios.get('/database.js').then(function(res) {
-            res.data.forEach(function(row) {
-                $('#country').append('<option value="'+row.Slug+'">'+row.Country+'</option>');
-            });
-        });
-        
-        var store = localStorage;
-        var getStore = store.getItem('myCountry') ? store.getItem('myCountry') : 'italy';
-        
-        var mychart = myChart();
-        countryData(getStore, covidstatus, mychart);
-        
-        $('#country').on('change', function() {
-            store.setItem('myCountry', $(this).val());
-            window.location.reload();
-        });
-        
-        function countryData(country, status, chart) {
-            getLabelData(chart);
-            status.forEach(function(item, index) {
-                getCountryData(item.slug, country, chart, index);
-            });
-        }
-        
-        function getLabelData(chart) {
-            axios.get('https://api.covid19api.com/total/country/italy/status/confirmed').then(function(response) {
-                chart.data.labels = formatData(response.data, 'label');
-                chart.update();
-            })
-        }
-        
-        function getCountryData(status, country, chart, index) {
-            axios.get('https://api.covid19api.com/total/country/'+country+'/status/'+status).then(function(response) {
-                chart.data.datasets[index].data = formatData(response.data, 'data');
-                chart.update();
-            }).catch(function(error) {
-                console.log(error);
-            });
-        }
-        
-        function formatData(data, type) {
-            var list = [];
-            data.forEach(function(item) {
-                if(type == 'data') {
-                    list.push(item.Cases);
-                } else if(type == 'label') {
-                    list.push(new Date(item.Date).getDate());
-                }
-            });
-            return list.slice(data.length - 7, data.length);
-        }
-        
-        function myChart() {
-            var myBasicChart = new Chart('myChart', {
-                type: 'bar',
-                data: {
-                    labels: [],
-                    datasets: dataSets(covidstatus)
-                },
-                options: {
-			        responsive: true,
-			        title: {
-				        display: true,
-				        text: 'COVID-19 by Country and Territory'
-			        },
-				    tooltips: {
-					    mode: 'index',
-					    intersect: true,
-				    },
-                    scales: {
-                        xAxes: [{
-					        display: true,
-				        }],
-				        yAxes: [{
-					        display: true,
-				        }]
-                    }
-                }
-            });
-            return myBasicChart;
-        }
-        
-        function dataSets(data) {
-            var sets = [];
-            data.forEach(function(item) {
-                sets.push({
-                    label: item.title,
-                    data: [],
-                    backgroundColor: item.backgroundColor,
-                    borderColor: item.borderColor,
-                    borderWidth: 3,
-                    fill: true
-                });
-            });
-            return sets;
-        }
-    </script>
+            ]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+        </script>
+         <% }); %>
 </body>
 </html>

@@ -46,32 +46,32 @@ router.get('/table', async function(req, res, next) {
 
 
 
-router.get('/chart', async function(req,res,next) {
-  const result = await db.getAllCountry();
-  const confirmed = await db.getAllConfirmed();
-  const recovered = await db.getAllRecovered();
-  const death = await db.getAllDeath();
+// router.get('/chart', async function(req,res,next) {
+//   const result = await db.getAllCountry();
+//   const confirmed = await db.getAllConfirmed();
+//   const recovered = await db.getAllRecovered();
+//   const death = await db.getAllDeath();
 
-  let objectCountry = [];
-  for (const key in result.rows) {
-    objectCountry[key] = {
-      state: result.rows[key].state,
-      country: result.rows[key].country,
-      confirmed: confirmed.rows[key].confirmed,
-      recovered: recovered.rows[key].confirmed,
-      death: death.rows[key].confirmed,
-    }
-  }
+//   let objectCountry = [];
+//   for (const key in result.rows) {
+//     objectCountry[key] = {
+//       state: result.rows[key].state,
+//       country: result.rows[key].country,
+//       confirmed: confirmed.rows[key].confirmed,
+//       recovered: recovered.rows[key].confirmed,
+//       death: death.rows[key].confirmed,
+//     }
+//   }
 
-  res.render('chart');
+//   res.render('chart');
 
-});
+// });
 
 router.get('/map', async function(req,res,next) {
   const getLatlong = await db.getLatLong();
+  const getConfirmed = await db.getAllConfirmed();
   
-
-  res.render('map', { maps:getLatlong.rows });
+  res.render('map', { maps: getLatlong.rows, confirmed: getConfirmed.rows });
 
 });
 
@@ -80,15 +80,14 @@ router.get('/total', async function(req, res, next) {
   const TotalConfirmed = await db.getTotalConfirmed();
   const TotalRecovered = await db.getTotalRecovered();
   const TotalDeaths = await db.getTotalDeaths();
-
   const lastWeekConfirmed = await db.getLastWeekConfirmed();
   const lastWeekRecovered = await db.getLastWeekRecovered();
   const lastWeekDeaths = await db.getLastWeekDeaths();
 
   const data = {
-    TotalConfirmed: TotalConfirmed.rows[0].confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-    TotalRecovered: TotalRecovered.rows[0].recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-    TotalDeaths: TotalDeaths.rows[0].deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+    TotalConfirmed: TotalConfirmed.rows[0].confirmed,
+    TotalRecovered: TotalRecovered.rows[0].recovered,
+    TotalDeaths: TotalDeaths.rows[0].deaths
   }
 
   res.render('total', {
@@ -99,7 +98,11 @@ router.get('/total', async function(req, res, next) {
   });
 });
 
-
+router.get('/chart',async function(req, res, next) {
+  const result = await db.getChart();
+  console.log(result.rows);
+  res.render('chart', { resultData: result.rows });
+});
 
 
 module.exports = router;

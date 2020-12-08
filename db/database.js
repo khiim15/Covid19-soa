@@ -51,10 +51,16 @@ const getAllDeath = async() => {
     }
 }
 
+async function getChart(){
+    const sql = `select sum(covid19_confirmed_csv."3/23/20") as date_conf,sum(covid19_death_csv."3/23/20") as date_death,sum(covid19_recovered_csv."3/23/20") as date_recover
+    from covid19_confirmed_csv , covid19_death_csv , covid19_recovered_csv
+    where covid19_confirmed_csv."Country/Region"= covid19_death_csv."Country/Region" and covid19_confirmed_csv."Province/State" = covid19_death_csv."Province/State" 
+    and covid19_confirmed_csv."Country/Region"= covid19_recovered_csv."Country/Region" and covid19_confirmed_csv."Province/State" = covid19_recovered_csv."Province/State" `
+    const data = await pool.query(sql);
+    //console.log(data);
+    return data;
 
-
-
-
+}
 
 const getLatLong = async() => {
     const sql= `SELECT "Province/State" as State , "Country/Region" as Country, lat , long from covid19_death_csv`
@@ -156,6 +162,9 @@ const getLastWeekDeaths = async () => {
     }
 }
 
+
+
+
 module.exports = {
     getAllCountry,
     getAllConfirmed,
@@ -167,5 +176,7 @@ module.exports = {
     getLastWeekConfirmed,
     getLastWeekRecovered,
     getLastWeekDeaths,
-    getLatLong
+    getLatLong,
+    getChart
+   
 }

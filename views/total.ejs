@@ -26,6 +26,12 @@
                     <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
+                    <a class="nav-link" href="/chart">Chart<Table></Table><span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/map">Map<Table></Table><span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
                     <a class="nav-link" href="/table">Table<Table></Table><span class="sr-only">(current)</span></a>
                 </li>
             </ul>
@@ -79,7 +85,7 @@
                     </div>
                     <div class="text-right">
                         <h1 class="mt-4 mr-4 ml-4 text-center font-weight-bold" style="color: white;" >
-                            <%= data.TotalRecovered %>
+                            <%= data.TotalDeaths %>
                         </h1>
                     </div>
                     <div class="card-footer">
@@ -93,11 +99,27 @@
         </div>
     </div>
 
-    <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.min.js"></script>
-    <script src="https://unpkg.com/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://unpkg.com/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/min/moment.min.js"></script> <!-- moment-with-locales.min.js -->
+     <!-- Essential jQuery Plugins
+		================================================== -->
+  <!-- Main jQuery -->
+  <script src="index/js/jquery-1.11.1.min.js"></script>
+  <!-- Twitter Bootstrap -->
+  <script src="index/js/bootstrap.min.js"></script>
+  <!-- Single Page Nav -->
+  <script src="index/js/jquery.singlePageNav.min.js"></script>
+  <!-- jquery.fancybox.pack -->
+  <script src="index/js/jquery.fancybox.pack.js"></script>
+  <!-- Owl Carousel -->
+  <script src="index/js/owl.carousel.min.js"></script>
+  <!-- jquery easing -->
+  <script src="index/js/jquery.easing.min.js"></script>
+  <!-- Fullscreen slider -->
+  <script src="index/js/jquery.slitslider.js"></script>
+  <script src="index/js/jquery.ba-cond.min.js"></script>
+  <!-- onscroll animation -->
+  <script src="index/js/wow.min.js"></script>
+  <!-- Custom Functions -->
+  <script src="index/js/main.js"></script>
     <script>
         getChart(`<%- JSON.stringify(lastWeekConfirmed) %>`, `<%- JSON.stringify(lastWeekRecovered) %>`, `<%- JSON.stringify(lastWeekDeaths) %>`);
     </script>
