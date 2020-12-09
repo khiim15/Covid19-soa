@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>COVID-19</title>
@@ -8,19 +9,20 @@
     <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-   crossorigin=""/>
-   <!-- Make sure you put this AFTER Leaflet's CSS -->
-     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin=""></script>
-   
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
 </head>
-  <body>
+
+<body>
     <nav class="navbar navbar-expand-sm navbar-back" style="background-color: rgb(212, 223, 255);">
         <a class="navbar-brand" href="/">COVID-19</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-            aria-expanded="false" aria-label="Toggle navigation"></button>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
@@ -38,12 +40,12 @@
             </ul>
         </div>
     </nav>
-      <div class="container-fluid" style="margin-top: 10px; text-align: center;">
+    <div class="container-fluid" style="margin-top: 10px; text-align: center;">
         <div id="toolbar">
             <h2>COVID-19 Update <span>(22/3/2020)</span></h2>
         </div>
-      </div>
-      <div class="container">
+    </div>
+    <div class="container">
         <table class="table ">
             <thead>
                 <tr>
@@ -56,31 +58,38 @@
             </thead>
             <tbody>
                 <% countrys.forEach(function(data){ %>
-                    <tr>
-                        <td style="background-color: #968c83; text-align: center; color: white;">
-                            <%= data.state %>
-                        </td>
-                        <td style="background-color:#0e918c; text-align: center; color: white;">
-                            <%= data.country %>
-                        </td>
-                        <td style="background-color:#f6830f; text-align: center; color: white;">
-                            <%= data.confirmed %>
-                        </td>
-                        <td style="background-color:#bb2205; text-align: center; color: white;">
-                            <%= data.recovered %>
-                        </td>
-                        <td style="background-color:#ee6f57; text-align: center; color: white;">
-                            <%= data.death %>
-                        </td>
-                    </tr>
-                    <% })  %>
+                <tr>
+                    <td style="background-color: #968c83; text-align: center; color: white;">
+                        <%= data.state %>
+                    </td>
+                    <td style="background-color:#0e918c; text-align: center; color: white;">
+                        <%= data.country %>
+                    </td>
+                    <td style="background-color:#f6830f; text-align: center; color: white;">
+                        <%= data.confirmed %>
+                    </td>
+                    <td style="background-color:#bb2205; text-align: center; color: white;">
+                        <%= data.recovered %>
+                    </td>
+                    <td style="background-color:#ee6f57; text-align: center; color: white;">
+                        <%= data.death %>
+                    </td>
+                </tr>
+                <% })  %>
             </tbody>
         </table>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>

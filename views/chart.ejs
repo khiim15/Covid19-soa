@@ -51,33 +51,34 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-    <canvas id="Chart" style="width: 906px; height: 309px; display: block;" width="1132" height="386" class="chartjs-render-monitor"></canvas>
+    <canvas id="Chart" style="width: 906px; height: 309px; display: block;" width="1132" height="386"
+        class="chartjs-render-monitor"></canvas>
     <% resultData.forEach(function(data){ %>
     <script>
-       
+
         var mychart = document.getElementById('Chart').getContext('2d');
         var chart = new Chart(mychart, {
             // The type of chart we want to create
             type: 'bar',
             // The data for our dataset
             data: {
-                
+
                 labels: ['Confirmed', 'Recovered', 'Deaths'],
                 datasets: [{
-                    
+
                     backgroundColor: ['#ffb0c1', '#a4dfdf', '#ffcf9f'],
-                    borderColor:['#ff6384','#4bc0c0','#ff9f40'],
-                    
+                    borderColor: ['#ff6384', '#4bc0c0', '#ff9f40'],
+
                     data: [
                         '<%=data.date_confirmed%>',
                         '<%=data.date_recovered%>',
                         '<%=data.date_deaths%>',
                     ]
-                    
+
                 }]
-                
+
             },
-            
+
             // Configuration options go here
             options: {
                 responsive: true,
@@ -99,8 +100,8 @@
                 }
             }
         });
-        
-      
+
+
     </script>
 
     <% }); %>

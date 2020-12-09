@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>COVID-19</title>
@@ -8,86 +9,94 @@
     <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-   crossorigin=""/>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.2/leaflet.css" />
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.2/leaflet.css" />
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/leaflet-tag-filter-button@0.0.4/docs/assets/css/leaflet-easy-button.css" />
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/leaflet-tag-filter-button@0.0.4/src/leaflet-tag-filter-button.css" />
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/leaflet-tag-filter-button@0.0.4/docs/assets/css/ripple.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.2/leaflet.js"></script>
     <script
         src="https://cdn.jsdelivr.net/npm/leaflet-tag-filter-button@0.0.4/docs/assets/js/leaflet-easy-button.js"></script>
     <script
         src="https://cdn.jsdelivr.net/npm/leaflet-tag-filter-button@0.0.4/src/leaflet-tag-filter-button.js"></script>
- 
-     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin=""></script>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-sm navbar-back" style="background-color: rgb(212, 223, 255);">
         <a class="navbar-brand" href="/">COVID-19</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-            aria-expanded="false" aria-label="Toggle navigation"></button>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
-                </li> 
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/total">Total<Table></Table><span class="sr-only">(current)</span></a>
-                </li> 
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/chart">Chart<Table></Table><span class="sr-only">(current)</span></a>
                 </li>
-               
+
                 <li class="nav-item active">
                     <a class="nav-link" href="/table">Table<Table></Table><span class="sr-only">(current)</span></a>
                 </li>
-               
+
             </ul>
         </div>
     </nav>
-    <div class="mt-5" >
-        <div class="title" style="text-align: center;"><h1>COVID-19 World Map</h1></div>
-        <div id="map" style="height: 500px; " >
+    <div class="mt-5">
+        <div class="title" style="text-align: center;">
+            <h1>COVID-19 World Map</h1>
+        </div>
+        <div id="map" style="height: 500px; ">
 
         </div>
     </div>
-    
-   
-      
- <!-- Essential jQuery Plugins
+
+
+
+    <!-- Essential jQuery Plugins
 		================================================== -->
-  <!-- Main jQuery -->
-  <script src="index/js/jquery-1.11.1.min.js"></script>
-  <!-- Twitter Bootstrap -->
-  <script src="index/js/bootstrap.min.js"></script>
-  <!-- Single Page Nav -->
-  <script src="index/js/jquery.singlePageNav.min.js"></script>
-  <!-- jquery.fancybox.pack -->
-  <script src="index/js/jquery.fancybox.pack.js"></script>
-  <!-- Owl Carousel -->
-  <script src="index/js/owl.carousel.min.js"></script>
-  <!-- jquery easing -->
-  <script src="index/js/jquery.easing.min.js"></script>
-  <!-- Fullscreen slider -->
-  <script src="index/js/jquery.slitslider.js"></script>
-  <script src="index/js/jquery.ba-cond.min.js"></script>
-  <!-- onscroll animation -->
-  <script src="index/js/wow.min.js"></script>
-  <!-- Custom Functions -->
-  <script src="index/js/main.js"></script>
-  <script src="/javascripts/map.js"></script>
-  <!-- Make sure you put this AFTER Leaflet's CSS -->
- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-   crossorigin=""></script>
-  <script>getMap(`<%- JSON.stringify(maps) %>`, `<%- JSON.stringify(confirmed) %>`, `<%- JSON.stringify(recovered) %>`, `<%- JSON.stringify(death) %>`)</script>
+    <!-- Main jQuery -->
+    <script src="index/js/jquery-1.11.1.min.js"></script>
+    <!-- Twitter Bootstrap -->
+    <script src="index/js/bootstrap.min.js"></script>
+    <!-- Single Page Nav -->
+    <script src="index/js/jquery.singlePageNav.min.js"></script>
+    <!-- jquery.fancybox.pack -->
+    <script src="index/js/jquery.fancybox.pack.js"></script>
+    <!-- Owl Carousel -->
+    <script src="index/js/owl.carousel.min.js"></script>
+    <!-- jquery easing -->
+    <script src="index/js/jquery.easing.min.js"></script>
+    <!-- Fullscreen slider -->
+    <script src="index/js/jquery.slitslider.js"></script>
+    <script src="index/js/jquery.ba-cond.min.js"></script>
+    <!-- onscroll animation -->
+    <script src="index/js/wow.min.js"></script>
+    <!-- Custom Functions -->
+    <script src="index/js/main.js"></script>
+    <script src="/javascripts/map.js"></script>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script>getMap(`<%- JSON.stringify(maps) %>`, `<%- JSON.stringify(confirmed) %>`, `<%- JSON.stringify(recovered) %>`, `<%- JSON.stringify(death) %>`)</script>
 </body>
+
 </html>

@@ -3,7 +3,7 @@ var router = express.Router();
 const db = require('../db/database');
 
 /* GET home page. */
-router.get('/', async function(req, res, next) {
+router.get('/', async function (req, res, next) {
   const result = await db.getAllCountry();
   const confirmed = await db.getAllConfirmed();
   const recovered = await db.getAllRecovered();
@@ -23,7 +23,7 @@ router.get('/', async function(req, res, next) {
 });
 
 
-router.get('/table', async function(req, res, next) {
+router.get('/table', async function (req, res, next) {
   const result = await db.getAllCountry();
   const confirmed = await db.getAllConfirmed();
   const recovered = await db.getAllRecovered();
@@ -45,18 +45,18 @@ router.get('/table', async function(req, res, next) {
 
 
 
-router.get('/map', async function(req,res,next) {
+router.get('/map', async function (req, res, next) {
   const getLatlong = await db.getLatLong();
   const getConfirmed = await db.getAllConfirmed();
   const getRecovered = await db.getAllRecovered2();
   const getDeath = await db.getAllDeath2();
-  
-  res.render('map', { maps: getLatlong.rows, confirmed: getConfirmed.rows , recovered: getRecovered.rows, death: getDeath.rows });
+
+  res.render('map', { maps: getLatlong.rows, confirmed: getConfirmed.rows, recovered: getRecovered.rows, death: getDeath.rows });
 
 });
 
-router.get('/total', async function(req, res, next) {
-  
+router.get('/total', async function (req, res, next) {
+
   const TotalConfirmed = await db.getTotalConfirmed();
   const TotalRecovered = await db.getTotalRecovered();
   const TotalDeaths = await db.getTotalDeaths();
@@ -78,7 +78,7 @@ router.get('/total', async function(req, res, next) {
   });
 });
 
-router.get('/chart',async function(req, res, next) {
+router.get('/chart', async function (req, res, next) {
   const result = await db.getChart();
   console.log(result.rows);
   res.render('chart', { resultData: result.rows });
