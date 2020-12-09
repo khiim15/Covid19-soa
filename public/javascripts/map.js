@@ -19,7 +19,7 @@ const getMap = (data, confirmed, recovered, death) => {
                 fillColor: '#f03',
                 fillOpacity: 0.5,
                 radius: 500000
-            }).bindPopup(`${parseConfirmed[key].confirmed}/${parseRecovered[key].recovered}/${parseDeath[key].death}`)
+            }).bindPopup(`Confirm : ${parseConfirmed[key].confirmed}<br> Recover : ${parseRecovered[key].recovered}<br> Deaths : ${parseDeath[key].death}`)
                 .addTo(map);
         } else
             if (parseConfirmed[key].confirmed < 5000 && parseConfirmed[key].confirmed >= 500) {
@@ -28,7 +28,7 @@ const getMap = (data, confirmed, recovered, death) => {
                     fillColor: 'orange',
                     fillOpacity: 0.5,
                     radius: 300000
-                }).bindPopup(`${parseConfirmed[key].confirmed}/${parseRecovered[key].recovered}/${parseDeath[key].death}`)
+                }).bindPopup(`Confirm : ${parseConfirmed[key].confirmed}<br> Recover : ${parseRecovered[key].recovered}<br> Deaths : ${parseDeath[key].death}`)
                     .addTo(map);
             } else
                 if (parseConfirmed[key].confirmed < 500) {
@@ -37,7 +37,7 @@ const getMap = (data, confirmed, recovered, death) => {
                         fillColor: 'green',
                         fillOpacity: 0.5,
                         radius: 100000
-                    }).bindPopup(`${parseConfirmed[key].confirmed}/${parseRecovered[key].recovered}/${parseDeath[key].death}`)
+                    }).bindPopup(`Confirm : ${parseConfirmed[key].confirmed}<br> Recover : ${parseRecovered[key].recovered}<br> Deaths : ${parseDeath[key].death}`)
                         .addTo(map);
                 }
 
